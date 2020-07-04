@@ -6,15 +6,17 @@
 
 Throughout the code certain language specific built-in predicates are used:
 
-**format** - used to write formatted information to the console (defined by Quintus Prolog)
+**dynamic/1** - informs that the predicate definitions may change during execution.
 
-**writeln/1** - term writing predicate, locks the  output stream
+**format** - used to write formatted information to the console (defined by Quintus Prolog).
 
-**retractall/1** - used to remove all the KB facts matching the head
+**writeln/1** - term writing predicate, locks the  output stream.
 
-**assert/1**- used to add a fact or rule in the KB
+**retractall/1** - used to remove all the KB facts matching the head.
 
-**( A -> B ; C )** - if then else construct 
+**assert/1**- used to add a fact or rule in the KB.
+
+**( A -> B ; C )** - if then else construct.
 
 - used to exit the recursion in **step_pre**
 
@@ -69,15 +71,17 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
   
   
   
-  ### Updating the Knowledge Base (update_KB/1)
+### Updating the Knowledge Base (update_KB/1)
   
   
   
-  ### Asking the Knowledge Base for recommended approach (ask_KB/2)
+  
+### Asking the Knowledge Base for recommended approach (ask_KB/2)
   
   
   
-  ### Game State Updates (update_time and update_score rules)
+  
+### Game State Updates (update_time and update_score rules)
   
   
 
