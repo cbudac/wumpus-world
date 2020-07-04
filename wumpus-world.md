@@ -128,7 +128,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 - is_gold(no, L) is asserted and a written confirmation is provided. 
 
-In the case that the agent is within a location where a percept(s) is indeed observed, the yes variants of the rules would be matched and a similar process is to the analysis above is followed. 
+In the case where the agent is within a location where a percept(s) is indeed observed, the yes variants of the respective rules would be matched and a similar process is to the analysis above is followed. 
   
 ### Asking the Knowledge Base for a recommended approach (ask_KB/2)
   
