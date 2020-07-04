@@ -97,7 +97,7 @@ Rules involved:
 After the evaluation of the **make_percept_sentence** in the **take_steps** rule, the Perception variable with the updated percepts list would be bound to the **update_KB** rule. Taking the starting location of [1,1] as an example, the percepts list returns [no, no, no]. These values would be matched with add_wumpus_KB(no), add_pit_KB(no) and add_gold_KB(no) rules.  
 
 
-**Updating the Wumpus Location**
+**Updating the Wumpus KB**
 
 - From the example, add_wumpus_KB(no) is matched as Smelly percept is not observed at location [1,1]. 
 
@@ -109,7 +109,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - A written confirmation on the KB update is provided using the pre-defined format predicate. 
 
 
-**Updating the Pit Locations**
+**Updating the Pit KB**
 
 - Similar to the pattern observed by Updating the Wumpus Location, add_pit_KB(no) rule is matched as Bleeze percept is not observed at location [1,1].
 
@@ -120,7 +120,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - A written confirmation on the KB update is provided using the format predicate. 
   
   
-**Updating the Gold Location**
+**Updating the Gold KB**
   
 - add_gold_KB(no) is matched as Glitter percept is not observed at location [1,1].
 
