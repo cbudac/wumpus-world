@@ -30,7 +30,7 @@ Throughout the code certain language specific built-in predicates are used:
 
 2. **The world initialization** - Anish can work on expanding this section.
 
-3. **The recursion** -  Yunfei, please see if you can talk about the **take_step** and **step_pre** recursion rules as well as the condition statement in **step_pre
+3. **The recursion** -  Yunfei, please see if you can talk about the **take_step** and **step_pre** recursion rules as well as the condition statement in **step_pre**
    
 
 ## Agent Stepping Mechanisms
