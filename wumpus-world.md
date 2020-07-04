@@ -53,9 +53,9 @@ At every step, the agent will create a list bound to the Perception variable. Th
 Rules involved:
 
 - **make_percept_sentence/1**
-- smelly, bleezy, glittering - with yes/no variants
-- isSmelly, isBleezy, isGlittering
-- adjacent
+- smelly/1, bleezy/1, glittering/1 - with yes/no variants
+- isSmelly/1, isBleezy/1, isGlittering/1
+- adjacent/2
 
 **Description:**
 
@@ -83,13 +83,13 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
   
 ### Updating the Knowledge Base from the Percepts list (update_KB/1)
 
-Once the list within the Perception variable is initialized for the agent's current location, the list values would be passed to subsidiary rules to update the KB regarding the world's state. This process would then be entailed by **ask_KB** to step into a new location. 
+Once the percepts list within the Perception variable is initialized at the agent's current location, **update_KB/1** would pass the list values to subsidiary rules to update the KB's world state. This process would then be entailed by **ask_KB** to help the agent step into a new location. 
 
 Rules involved:
 
 - **update_KB/1**
-- add_wumpus_KB, add_pit_KB, add_gold_KB - with their respective yes or no percept variable variants (Stench, Bleeze or Glitter).
-- assume_wumpus, assume_pit, assume_gold - with their respective yes or no atom and location list variants.
+- add_wumpus_KB/1, add_pit_KB/1, add_gold_KB/1 - with their respective yes or no percept variable variants (Stench, Bleeze or Glitter) as arguments.
+- assume_wumpus/2, assume_pit/2, assume_gold/2 - with their respective yes or no atom and location list variants as arguments.
 
 **Description:**
 
