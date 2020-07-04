@@ -28,7 +28,7 @@ Throughout the code certain language specific built-in predicates are used:
 
    The code is starting by invoking the **start** rule. The **start** rule is a conjunction between the **init** and the **take_steps** rule. The **take_steps** rule launches the recursion mechanism used explore the world.
 
-2. **The world initialization** - Anish can work on this on Sat!!
+2. **The world initialization**
 
 3. **The recursion** 
 
