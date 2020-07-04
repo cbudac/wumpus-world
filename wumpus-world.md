@@ -101,7 +101,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 - From the example, add_wumpus_KB(no) is matched as Smelly percept is not observed at location [1,1]. 
 
-- Through a step-by-step process, assume_wumpus(no, L) is matched for every location L adjacent to the current agent_location([X,Y]).
+- Through a step-by-step process, assume_wumpus(no, L) rule is matched for every location L adjacent to the current agent_location([X,Y]).
   - The adjacent co-ordinates are calculated using mathematical expressions and stored within new variables (Z1, Z2, etc.).
   
 - For each L adjacent location, assume_wumpus(no, L) retracts and asserts the dynamic predicate is_wumpus(no,L) within the KB. 
@@ -111,11 +111,11 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 **Updating the Pit Locations**
 
-- Similar to the pattern observed by Updating the Wumpus Location, add_pit_KB(no) is matched as Bleeze percept is not observed at location [1,1].
+- Similar to the pattern observed by Updating the Wumpus Location, add_pit_KB(no) rule is matched as Bleeze percept is not observed at location [1,1].
 
-- assume_pit(no, L) is matched for every location L adjacent to the current agent_location([X,Y]) using the same mathematical process.
+- assume_pit(no, L) rule is matched for every location L adjacent to the current agent_location([X,Y]) using the same mathematical process.
 
-- For each L adjacent location, assume_pit(no, L) retracts and asserts the dynamic predicate is_pit(no, L) within the KB.
+- For each L adjacent location, assume_pit(no, L) rule retracts and asserts the dynamic predicate is_pit(no, L) within the KB.
 
 - A written confirmation on the KB update is provided using the format predicate. 
   
@@ -124,7 +124,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
   
 - add_gold_KB(no) is matched as Glitter percept is not observed at location [1,1].
 
-- assume_gold(no, L) is matched, where L is the location of the gold (i.e [3,2]). 
+- assume_gold(no, L) rule is matched, where L is the location of the gold (i.e [3,2]). 
 
 - is_gold(no, L) is asserted and a written confirmation is provided. 
 
