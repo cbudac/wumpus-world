@@ -29,11 +29,12 @@ Throughout the code certain language specific built-in predicates are used:
    The code is starting by invoking the **start** rule. The **start** rule is a conjunction between the **init** and the **take_steps** rule. The **take_steps** rule launches the recursion mechanism used explore the world.
    
 2. **The world initialization**
+
 	The init consists of four components:
-		init_game: initiallize environmental variables like time, score, visited, visited_cells, and clean the is_Wumpus and is_Gold
-		init_land_fig72: define the size of the map, setup one gold location and 3 pit location in the map.
-		init_agent: initialize agent location at bottom left corner, which is [1,1] in the map, and update visited_cells
-		init_wumpus: setup wumpus location.
+		**init_game**: initiallize environmental variables like time, score, visited, visited_cells, and clean the is_Wumpus and is_Gold
+		**init_land_fig72**: define the size of the map, setup one gold location and 3 pit location in the map.
+		**init_agent**: initialize agent location at bottom left corner, which is [1,1] in the map, and update visited_cells
+		**init_wumpus**: setup wumpus location.
 
 3. **The recursion** 
 
