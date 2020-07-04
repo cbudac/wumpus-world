@@ -73,7 +73,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
   
   
   
-### Updating the Knowledge Base from Percepts (update_KB/1)
+### Updating the Knowledge Base from Percepts (update_KB/1) - Anish can work on this!!
   
   
   
