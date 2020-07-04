@@ -28,9 +28,11 @@ Throughout the code certain language specific built-in predicates are used:
 
    The code is starting by invoking the **start** rule. The **start** rule is a conjunction between the **init** and the **take_steps** rule. The **take_steps** rule launches the recursion mechanism used explore the world.
 
-2. **The world initialization** - Anish can work on expanding this section.
+2. **The world initialization** - Anish can work on this!!
 
-3. **The recursion** -  Yunfei, please see if you can talk about the **take_step** and **step_pre** recursion rules as well as the condition statement in **step_pre**
+3. **The recursion** 
+
+   After initialization, control shifts to the **take_steps** rule which tracks the agent's perception, updates the knowledge base and query for the next logical move, and alters the world state (time, score, agent's standing, etc.). If the agent does not fall into a pit, control is passed to the **step_pre rule** which utilizes an if-then-else construct to see if the game ends (agent obtains gold or is eaten). If neither case occurs, control is passed back to **take_steps** and the process repeats.
    
 
 ## Agent Stepping Mechanisms
