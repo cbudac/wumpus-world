@@ -114,7 +114,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 - Similar to the pattern observed by Updating the Wumpus Location, add_pit_KB(no) rule is matched as Bleeze percept is not observed at location [1,1].
 
-- assume_pit(no, L) rule is matched for every location L adjacent to the current agent_location([X,Y]) using the same mathematical process.
+- assume_pit(no, L) rule is matched for every location L adjacent to the current agent_location([X,Y]) using the same mathematical expressions.
 
 - For each L adjacent location, assume_pit(no, L) rule retracts and asserts the dynamic predicate is_pit(no, L) within the KB.
 
