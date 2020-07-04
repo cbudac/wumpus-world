@@ -30,7 +30,7 @@ Throughout the code certain language specific built-in predicates are used:
    
 2. **The world initialization**
 
-The **init** consists of four components:
+   The **init** consists of four components:
 
 - **init_game**: initiallize environmental variables like time, score, visited, visited_cells, and clear the isWumpus and isGold
 - **init_land_fig72**: define the size of the map, setup 1 gold location and 3 pit location in the map.
