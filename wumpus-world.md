@@ -65,6 +65,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - make_percept_sentence([Stench, Bleeze, Glitter]) is matched (Perception is unified with [Stench, Bleeze, Glitter]). At this moment the 3 variables are not yet bound.
 
   
+
 **Solving Smelly**
 
 - smelly(yes) is matched (because is before smelly(no)). The AL variable is bound using the agent_location(AL) fact from the KB
@@ -120,8 +121,9 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - A written confirmation on the KB update is provided using the format predicate. 
   
   
+
 **Updating the Gold KB**
-  
+
 - add_gold_KB(no) is matched as Glitter percept is not observed at location [1,1].
 
 - assume_gold(no, L) rule is matched, where L is the location of the gold (i.e [3,2]). 
@@ -129,13 +131,39 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - is_gold(no, L) is asserted and a written confirmation is provided. 
 
 In the case where the agent is within a location where a percept(s) is indeed observed, the yes variants of the respective rules would be matched and a similar process is to the analysis above is followed. 
-  
+
 ### III. Asking the Knowledge Base for a recommended approach (ask_KB/2)
-  
-  
-  
-  
+
+The **update_KB** rule has populated the KB with information about the existence of danger (Pit or Wumpus) and Gold in the adjacent cells. Practically the KB will contain facts like **isPit(no, [1,2])**, etc.
+
+The **ask_KB** rule accepts two variables, the **VisitedList** that is already bound and contains the the visited locations and the **Action**  that will be bound in this rule and will be used to send information about the next move to the console:   format('I\'m going to: ~p~n', [Action]).
+
+Essentially, this rule tries to bind a variable L to a position for which all of the following evaluate to true: isWumpus(no, L), isPit(no, L), permitted(L), not_member(L, VisitedList). The backtracking approach is used repeatedly, until such a L value is found. 
+
+**Facts:**
+
+isWumpus and isPit are simple facts and their simple presence in the KB will suffice.
+
+**Solving permitted(L)**
+
+- the WS variable is bound to the initialized size of the world (in our case, 4) through a query
+- the next several rules will fail if we get a location beyond the world's boundary
+
+**Solving not_member(L, VisitedList)**
+
+- this rule has to variants that allow to recursively visit the list and break (through an if-then-else construct) when no match is found 
+
+- the VisitedList is recursively matched against the location L
+- the recursion is exited when **not_member(_, [])** is matched
+
+**update_agent_location(L)**
+
+- when this rule is evaluated, the secondary effect will be that the KB is augmented with the new agent location
+
+So when this rule evaluates to true, the KB will end up containing the new agent location. The Action variable is bound to the new agent location and is used to send information to the console.
+
+
 ### IV. Game State Updates (update_time and update_score rules)
-  
+
   
 
