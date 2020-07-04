@@ -36,7 +36,8 @@ Throughout the code certain language specific built-in predicates are used:
 	- **init_agent**: initialize agent location at bottom left corner, which is [1,1] in the map, and update visited_cells.
 	- **init_wumpus**: setup a wumpus location.
 
-It must be noted that the location of the pits, gold and wumpus are not randomly assigned with each program run, and are fixed in reference to Figure 7.2 in Russel-Norvig's AI textbook. 
+	It must be noted that the location of the pits, gold and wumpus are not randomly assigned with each program run, and are fixed in reference to Figure 7.2 in Russel-Norvig's AI textbook. 
+
 
 3. **The recursion** 
 
