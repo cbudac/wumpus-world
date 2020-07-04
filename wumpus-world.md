@@ -20,20 +20,18 @@ Throughout the code certain language specific built-in predicates are used:
 
  
 
-## High level mechanisms
+## High Level Mechanisms
 
 1. **The starting point**
 
    The code is starting by invoking the **start** rule. The **start** rule is a conjunction between the **init** and the **take_steps** rule. The **take_steps** rule launches the recursion mechanism used explore the world.
 
-2. **The world initialization**
+2. **The world initialization** - Anish can work on expanding this section.
 
-3. **The recursion**
-
+3. **The recursion** -  Yunfei, please see if you can talk about the **take_step** and **step_pre** recursion rules as well as the condition statement in **step_pre
    
 
-## Other Mechanisms
-
+## Agent Step Mechanisms
 
 
 ### Sensing the world and creating the Perception list (make_percept_sentence/1)
@@ -54,7 +52,6 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - make_percept_sentence([Stench, Bleeze, Glitter]) is matched (Perception is unified with [Stench, Bleeze, Glitter]). At this moment the 3 variables are not yet bound.
 
   
-
   **Solving Smelly**
 
 - smelly(yes) is matched (because is before smelly(no)). The AL variable is bound using the agent_location(AL) fact from the KB
@@ -65,9 +62,22 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 - adjacent(Ls1,Ls2) is matched. If this fails, isSmelly(Ls1) fails and smelly(yes) fails. Backtracking stops as smelly(no) will be the next match. As a result the Stench variable is bound to **no**.
 
-  
 
   **Solving Bleezy and Glitter - same pattern as Solving Smelly**
 
   Once make_percept_sentence returns, the Perception variable will be something like: [no, no, no]
+  
+  
+  
+  ### Updating the Knowledge Base (update_KB/1)
+  
+  
+  
+  ### Asking the Knowledge Base for recommended approach (ask_KB/2)
+  
+  
+  
+  ### Game State Updates (update_time and update_score rules)
+  
+  
 
