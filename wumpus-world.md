@@ -32,9 +32,11 @@ Throughout the code certain language specific built-in predicates are used:
 
    The **init** consists of four components:
 	- **init_game**: initiallize environmental variables like time, score, visited, visited_cells, and clear the isWumpus and isGold.
-	- **init_land_fig72**: define the size of the map, setup 1 gold location and 3 pit location in the map.
+	- **init_land_fig72**: define the size of the map, setup 1 gold location and 3 pit locations in the map.
 	- **init_agent**: initialize agent location at bottom left corner, which is [1,1] in the map, and update visited_cells.
-	- **init_wumpus**: setup wumpus location.
+	- **init_wumpus**: setup a wumpus location.
+
+It must be noted that the location of the pits, gold and wumpus are not randomly assigned with each program run, and are fixed in reference to Figure 7.2 in Russel-Norvig's AI textbook. 
 
 3. **The recursion** 
 
@@ -44,7 +46,7 @@ Throughout the code certain language specific built-in predicates are used:
 ## Agent Step-Taking Mechanisms
 
 
-### Sensing the world and creating the Perception list (make_percept_sentence/1)
+### Sensing the world and creating the Percepts list (make_percept_sentence/1)
 
 At every step, the agent will create a list bound to the Perception variable. This list contains information about the presence of smell, breeze or glitter. This information is used later to update the KB. 
 
@@ -62,7 +64,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - make_percept_sentence([Stench, Bleeze, Glitter]) is matched (Perception is unified with [Stench, Bleeze, Glitter]). At this moment the 3 variables are not yet bound.
 
   
-  **Solving Smelly**
+**Solving Smelly**
 
 - smelly(yes) is matched (because is before smelly(no)). The AL variable is bound using the agent_location(AL) fact from the KB
 
@@ -73,17 +75,59 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - adjacent(Ls1,Ls2) is matched. If this fails, isSmelly(Ls1) fails and smelly(yes) fails. Backtracking stops as smelly(no) will be the next match. As a result the Stench variable is bound to **no**.
 
 
-  **Solving Bleezy and Glitter - same pattern as Solving Smelly**
+**Solving Bleezy and Glitter - same pattern as Solving Smelly**
 
-  Once make_percept_sentence returns, the Perception variable will be something like: [no, no, no]
+- Once make_percept_sentence returns, the Perception variable will be something like: [no, no, no]
   
   
   
-### Updating the Knowledge Base from Percepts (update_KB/1)
+### Updating the Knowledge Base from the Percepts list (update_KB/1)
+
+Once the list within the Perception variable is initialized for the agent's current location, the list values would be passed to subsidiary rules to update the KB regarding the world's state. This process would then be entailed by **ask_KB** to step into a new location. 
+
+Rules involved:
+
+- **update_KB/1**
+- add_wumpus_KB, add_pit_KB, add_gold_KB - with their respective yes or no percept variable variants (Stench, Bleeze or Glitter).
+- assume_wumpus, assume_pit, assume_gold - with their respective yes or no atom and location list variants.
+
+**Description:**
+
+After the evaluation of the **make_percept_sentence** in the **take_steps** rule, the Perception variable with the updated percepts list would be bound to the **update_KB** rule. Taking the starting location of [1,1] as an example, the percepts list returns [no, no, no]. These values would be matched with add_wumpus_KB(no), add_pit_KB(no) and add_gold_KB(no) rules.  
 
 
+**Updating the Wumpus Location**
 
+- From the example, add_wumpus_KB(no) is matched as Smelly percept is not observed at location [1,1]. 
+
+- Through a step-by-step process, assume_wumpus(no, L) is matched for every location L adjacent to the current agent_location([X,Y]).
+  - The adjacent co-ordinates are calculated using mathematical expressions and stored within new variables (Z1, Z2, etc.).
   
+- For each L adjacent location, assume_wumpus(no, L) retracts and asserts the dynamic predicate is_wumpus(no,L) within the KB. 
+
+- A written confirmation on the KB update is provided using the pre-defined format predicate. 
+
+
+**Updating the Pit Locations**
+
+- Similar to the pattern observed by Updating the Wumpus Location, add_pit_KB(no) is matched as Bleeze percept is not observed at location [1,1].
+
+- assume_pit(no, L) is matched for every location L adjacent to the current agent_location([X,Y]) using the same mathematical process.
+
+- For each L adjacent location, assume_pit(no, L) retracts and asserts the dynamic predicate is_pit(no, L) within the KB.
+
+- A written confirmation on the KB update is provided using the format predicate. 
+  
+  
+**Updating the Gold Location**
+  
+- add_gold_KB(no) is matched as Glitter percept is not observed at location [1,1].
+
+- assume_gold(no, L) is matched, where L is the location of the gold (i.e [3,2]). 
+
+- is_gold(no, L) is asserted and a written confirmation is provided. 
+
+In the case that the agent is within a location where a percept(s) is indeed observed, the yes variants of the rules would be matched and a similar process is to the analysis above is followed. 
   
 ### Asking the Knowledge Base for a recommended approach (ask_KB/2)
   
