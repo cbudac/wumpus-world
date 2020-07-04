@@ -41,7 +41,7 @@ Throughout the code certain language specific built-in predicates are used:
 
 3. **The recursion** 
 
-   After initialization, control shifts to the **take_steps** rule which tracks the agent's percepts, updates the knowledge base and the next logical move, and alters the world state (time, score, agent's standing, etc.). If the agent does not fall into a pit, control is passed to the **step_pre rule** which utilizes an if-then-else construct to see if the game ends (agent obtains gold or is eaten). If neither case occurs, control is passed back to **take_steps** and the process repeats.
+   After initialization, control shifts to the **take_steps** rule which tracks the agent's current percepts, updates the knowledge base, issues the next logical step, and alters the world state (time, score, agent's standing, etc.). If the agent does not fall into a pit, control is passed to the **step_pre rule** which utilizes an if-then-else construct to see if the game ends (agent obtains gold or is eaten). If neither case occurs, control is passed back to **take_steps** and the process repeats.
    
 
 ## Agent Step-Taking Mechanisms
