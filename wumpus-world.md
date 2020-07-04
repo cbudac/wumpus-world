@@ -1,4 +1,4 @@
-# Wumpus-world - code analysis
+# Wumpus World - Prolog Code Analysis
 
 
 
