@@ -47,7 +47,7 @@ Throughout the code certain language specific built-in predicates are used:
 ## Agent Step-Taking Mechanisms
 
 
-### Sensing the world and creating the Percepts list (make_percept_sentence/1)
+### I. Sensing the world and creating the Percepts list (make_percept_sentence/1)
 
 At every step, the agent will create a list bound to the Perception variable. This list contains information about the presence of smell, breeze or glitter. This information is used later to update the KB. 
 
@@ -82,7 +82,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
   
   
   
-### Updating the Knowledge Base from the Percepts list (update_KB/1)
+### II. Updating the Knowledge Base from the Percepts list (update_KB/1)
 
 Once the percepts list within the Perception variable is initialized at the agent's current location, **update_KB/1** would pass the list values to subsidiary rules to update the KB's world state. This process would then be entailed by **ask_KB** to help the agent step into a new location. 
 
@@ -130,12 +130,12 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 In the case where the agent is within a location where a percept(s) is indeed observed, the yes variants of the respective rules would be matched and a similar process is to the analysis above is followed. 
   
-### Asking the Knowledge Base for a recommended approach (ask_KB/2)
+### III. Asking the Knowledge Base for a recommended approach (ask_KB/2)
   
   
   
   
-### Game State Updates (update_time and update_score rules)
+### IV. Game State Updates (update_time and update_score rules)
   
   
 
