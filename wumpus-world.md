@@ -33,7 +33,7 @@ Throughout the code certain language specific built-in predicates are used:
 3. **The recursion** -  Yunfei, please see if you can talk about the **take_step** and **step_pre** recursion rules as well as the condition statement in **step_pre
    
 
-## Agent Step Mechanisms
+## Agent Stepping Mechanisms
 
 
 ### Sensing the world and creating the Perception list (make_percept_sentence/1)
@@ -71,12 +71,12 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
   
   
   
-### Updating the Knowledge Base (update_KB/1)
+### Updating the Knowledge Base from Percepts (update_KB/1)
   
   
   
   
-### Asking the Knowledge Base for recommended approach (ask_KB/2)
+### Asking the Knowledge Base for a recommended approach (ask_KB/2)
   
   
   
