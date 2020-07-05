@@ -166,7 +166,7 @@ So when this rule evaluates to true, the KB will end up containing the new agent
 ### IV. Game State Updates (update_time and update_score rules)
 Game time and score are updated by 5 rules: **update_time/0, update_score/0, update_score/1, update_score/3 (1), update_score/3 (2)**.
 
-**update_time** rule will fetch time value from the dynamic predicate time_taken/1 and then update the time by adding 1 in value. **update_score/0** rull will fetch agent location, gold location and wumpus location and then try to unify the update_score(AL, GL, WL) with two **update_score/3** rules in sequence. If it unifies with **update_score(AL, AL, _)**, it means agent is now on the gold, and 1000 points rewarded, else it will unify with **update_score(_,_,_)** and -1 point is rewarded. Then **update_score/1** is unified to fetch the previous score from dynamic predicate score/1 and to update the KB with score/1 by either adding -1 or 1000 points to this dynamic predicate.
+**update_time** rule will fetch time value from the dynamic predicate time_taken/1 and then update the time by adding 1 in value. **update_score/0** rule will fetch agent location, gold location and wumpus location and then try to unify the update_score(AL, GL, WL) with two **update_score/3** rules in sequence. If it unifies with **update_score(AL, AL, _)**, it means agent is now on the gold, and 1000 points rewarded, else it will unify with **update_score(_,_,_)** and -1 point is rewarded. Finally, **update_score/1** is unified, to fetch the previous score from dynamic predicate score/1 and then to update it by either adding -1 or 1000 points.
 
 
 ### V. Standing
