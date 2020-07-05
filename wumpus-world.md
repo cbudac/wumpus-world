@@ -165,5 +165,8 @@ So when this rule evaluates to true, the KB will end up containing the new agent
 
 ### IV. Game State Updates (update_time and update_score rules)
 
+
+### V. Standing
+
   
 
