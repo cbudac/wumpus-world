@@ -170,6 +170,8 @@ Game time and score are updated by 5 rules: **update_time/0, update_score/0, upd
 
 **update_score/0** rule will fetch agent location, gold location and wumpus location and then try to unify the update_score(AL, GL, WL) with two **update_score/3** rules in sequence. If it unifies with **update_score(AL, AL, _)**, it means agent is now on the gold, and 1000 points rewarded, else it will unify with **update_score(_,_,_)** and -1 point is rewarded. Finally, **update_score/1** is unified, to fetch the previous score from dynamic predicate score/1 and then to update it by either adding -1 or 1000 points as the new score.
 
+After the time and score update, the action location is fetched from the agent_location predicate and then combined with past visited list to put it at the front of the list. Then the combined visited list will be passed to **step_pre/1** for the next iteration of recursion.
+
 
 ### V. Standing
 
