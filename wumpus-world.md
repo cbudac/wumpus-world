@@ -132,7 +132,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 In the case where the agent is within a location where a percept(s) is indeed observed, the yes variants of the respective rules would be matched and a similar process is to the analysis above is followed. 
 
-### III. Asking the Knowledge Base for a recommended approach (ask_KB/2)
+### III. Asking the Knowledge Base for a recommended action (ask_KB/2)
 
 The **update_KB** rule has populated the KB with information about the existence of danger (Pit or Wumpus) and Gold in the adjacent cells. Practically the KB will contain facts like **isPit(no, [1,2])**, etc.
 
