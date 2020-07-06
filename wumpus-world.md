@@ -41,7 +41,7 @@ Throughout the code certain language specific built-in predicates are used:
 
 3. **The recursion** 
 
-   After initialization, control shifts to the **take_steps** rule which tracks the agent's current percepts, updates the knowledge base, issues the next logical step, and alters the world state (time, score, agent's standing, etc.). If the agent does not fall into a pit, control is passed to the **step_pre rule** which utilizes an if-then-else construct to see if the game ends (agent obtains gold or is eaten). If neither case occurs, control is passed back to **take_steps** and the process repeats.
+   After initialization, control shifts to the **take_steps** rule which tracks the agent's current percepts, updates the knowledge base, issues the next logical step, checks agent standing, and alters the world state (time, score, etc.). The control is then passed to the **step_pre rule** which mainly features an if-then-else construct to see if the game ends (agent obtains gold or is eaten). If neither case occurs, control is passed back to **take_steps** and the process repeats.
    
 
 ## Agent Step-Taking Mechanisms
@@ -64,7 +64,6 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 - make_percept_sentence([Stench, Bleeze, Glitter]) is matched (Perception is unified with [Stench, Bleeze, Glitter]). At this moment the 3 variables are not yet bound.
 
-  
 
 **Solving Smelly**
 
@@ -80,7 +79,15 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 **Solving Bleezy and Glitter - same pattern as Solving Smelly**
 
 - Once make_percept_sentence returns, the Perception variable will be something like: [no, no, no]
-  
+
+
+**Solving for Adjacent Locations**
+
+- As implied, the “adj” relation defines what it means for two integers (here meant to represent cell locations in the x or y direction) to be adjacent to each other.
+
+- The “adjacent” rule specifies that the points (x1, y1) and (x2, y2) are adjacent if they are on the same column (same x) and their y’s are “adj”, or on the same   row (same y) and their x’s are “adj”.
+
+- This rule is important to help identify the appropriate percept in the given location, which in-turn helps to appropriately update the knowledge base. 
   
   
 ### II. Updating the Knowledge Base from the Percepts list (update_KB/1)
@@ -175,10 +182,12 @@ After the time and score update, the action location is fetched from the agent_l
 
 ### V. Standing
 
-The **standing**  rule allows the agent to recover when it falls into a pit. When this happens, the rule fails, forcing the parent  **take_steps** to try another location. **standing** uses three other rules - the **stnd**. These **stnd** rules should match the specific cases when the agent location is the same as the wumpus location or the gold location. However it seems that the implementation is incorrect as the more generic match is written first. The more concrete rules will never be matched and the recursion will be ended in the **step_pre** rule.
+The **standing** rule allows the agent to recover when it falls into a pit. When this happens, the rule fails, forcing the parent  **take_steps** to try another location. **standing** uses three other rules, the **stnd**, with seperate argument constraints. These **stnd** rules should match the specific cases when the agent location is the same as the wumpus location or the gold location. 
+
+Upon closer inspection of the **stnd** rule code blocks, it seems that the implementation is incorrect as the more generic match is written first. The more concrete rules will never be matched and the recursion will be ended in the **step_pre** rule.
 
 ## Code Improvements
 
 1. The **add_wumpus_KB(yes)** rule is missing, so when the agent stands at [3,1] and smells the Stench, the KB won't be updated to indicate that the adjacent tiles might have a wumpus. This would fail the **update_KB** rule and backtrack to change the Stench from "yes" to "no". To solve this, **add_wumpus_KB(yes)** rule must be added. This update is shown in our submitted "wumpus_updated.pl" code at line 295.
-2. In the KB update, in the **add_gold_KB(no)** rule, the Body was fetching the fixed gold location ([3,2]) and using it to update the KB. This is wrong. Instead, we should use the agent location to update KB to let KB learn that current agent location is not the gold location by **assume_gold(no, AL)**, and then the correct written confirmation can now be provided. (ex."KB learn [1,1] - there's no gold here!"). This update also appears in our submitted "wumpus_updated.pl" code at line 326.
+2. Within the KB update, the **add_gold_KB(no)** rule had the Body fetch for the fixed gold location (i.e [3,2]) and use that to update the KB. This is incorrect. Instead, we should use the agent location to update KB to let KB learn that current agent location is not the gold location by **assume_gold(no, AL)**, and then the correct written confirmation can be provided (i.e "KB learn [1,1] - there's no gold here!"). This update also appears in our submitted "wumpus_updated.pl" code at line 326.
 
