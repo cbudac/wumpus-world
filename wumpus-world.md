@@ -1,6 +1,6 @@
 # Wumpus World - Prolog Code Analysis
 
-We are group 2, and our members are: Cosmin Budac, Anish Basak, Yunfei Bai 
+Group II Members: Cosmin Budac, Anish Basak, Yunfei Bai 
 
 ## Language Built-in Predicates and Constructs
 
