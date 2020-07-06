@@ -179,6 +179,6 @@ The **standing**  rule allows the agent to recover when it falls into a pit. Whe
 
 ## Code Improvements
 
-1. The **add_wumpus_KB(yes)** rule is missing, so when the agent stands at [3,1] and smells the Stench, the KB won't be updated to indicate that the adjacent tiles might have a wumpus, and it will Fail the **update_KB** rule and backtrack to change the Stench from "yes" to "no". To solve this, **add_wumpus_KB(yes)** must be added. This update is shown in our submitted "wumpus_updated.pl" code.
+1. The **add_wumpus_KB(yes)** rule is missing, so when the agent stands at [3,1] and smells the Stench, the KB won't be updated to indicate that the adjacent tiles might have a wumpus. This would fail the **update_KB** rule and backtrack to change the Stench from "yes" to "no". To solve this, **add_wumpus_KB(yes)** rule must be added. This update is shown in our submitted "wumpus_updated.pl" code.
 2. In the KB update, in the **add_gold_KB(no)** rule, the Body was fetching the gold location and use it to update the KB. This is wrong. Instead, we should use the agent location to update KB to let KB learn that current agent location is not gold location by **assume_gold(no, AL)**, and then the correct written confirmation can now be provided. (ex."KB learn [1,1] - there's no gold here!"). This update also appears in our submitted "wumpus_updated.pl" code.
 
