@@ -65,20 +65,20 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - make_percept_sentence([Stench, Bleeze, Glitter]) is matched (Perception is unified with [Stench, Bleeze, Glitter]). At this moment the 3 variables are not yet bound.
 
 
-**Solving Smelly**
+**Solving Smelly Percept**
 
-- smelly(yes) is matched (because is before smelly(no)). The AL variable is bound using the agent_location(AL) fact from the KB
+- smelly(yes) is matched (because is before smelly(no)). The AL variable is bound using the agent_location(AL) fact from the KB.
 
 - isSmelly(Ls1) is matched. The Ls1 variable is bound to AL, representing the current agent position, extracted from the KB.
 
-- Ls2 is bound using the wumpus_location(Ls2) from the KB
+- Ls2 is bound using the wumpus_location(Ls2) from the KB.
 
 - adjacent(Ls1,Ls2) is matched. If this fails, isSmelly(Ls1) fails and smelly(yes) fails. Backtracking stops as smelly(no) will be the next match. As a result the Stench variable is bound to **no**.
 
 
-**Solving Bleezy and Glitter - same pattern as Solving Smelly**
+**Solving Bleezy and Glitter Percepts - same pattern as Solving Smelly**
 
-- Once make_percept_sentence returns, the Perception variable will be something like: [no, no, no]
+- Once make_percept_sentence returns, the Perception variable will be something like: [no, no, no] for the [1,1] agent starting location.
 
 
 **Solving for Adjacent Locations**
@@ -128,7 +128,6 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 - A written confirmation on the KB update is provided using the format predicate. 
   
   
-
 **Updating the Gold KB**
 
 - add_gold_KB(no) is matched as Glitter percept is not observed at location [1,1].
