@@ -177,5 +177,5 @@ After the time and score update, the action location is fetched from the agent_l
 
 The **standing**  rule allows the agent to recover when it falls into a pit. When this happens, the rule fails, forcing the parent  **take_steps** to try another location. **standing** uses three other rules - the **stnd**. These **stnd** rules should match the specific cases when the agent location is the same as the wumpus location or the gold location. However it seems that the implementation is incorrect as the more generic match is written first. The more concrete rules will never be matched and the recursion will be ended in the **step_pre** rule.
 
-## Code Improvements Suggestions
+## Code Improvements
 
