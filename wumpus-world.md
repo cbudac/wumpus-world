@@ -126,7 +126,7 @@ After the evaluation of the **make_percept_sentence** in the **take_steps** rule
 
 - add_gold_KB(no) is matched as Glitter percept is not observed at location [1,1].
 
-- assume_gold(no, L) rule is matched, where L is the location of the gold (i.e [3,2]). 
+- assume_gold(no, L) rule is matched, where L is the location of the agent (i.e [1,1]). This is different from the original code since in the original code it uses gold location as L and this is wrong to update. (Please refer to **Code Improvements** section at the bottom of this document)
 
 - is_gold(no, L) is asserted and a written confirmation is provided. 
 
@@ -178,4 +178,7 @@ After the time and score update, the action location is fetched from the agent_l
 The **standing**  rule allows the agent to recover when it falls into a pit. When this happens, the rule fails, forcing the parent  **take_steps** to try another location. **standing** uses three other rules - the **stnd**. These **stnd** rules should match the specific cases when the agent location is the same as the wumpus location or the gold location. However it seems that the implementation is incorrect as the more generic match is written first. The more concrete rules will never be matched and the recursion will be ended in the **step_pre** rule.
 
 ## Code Improvements
+
+1. The **add_wumpus_KB(yes)** is missing, so even when you stand at [3,1] and smell the Stench, the KB won't be updated to indicate that surrounding might exists wumpus, and it will even Fail the **update_KB** rule and backtrack to change the Stench from "yes" to "no". To solve this, just to add **add_wumpus_KB(yes)**. This update also appears in our "wumpus_updated.pl" code submitted.
+2. In the KB update, in the **add_gold_KB(no)** rule, the Body was fetching the gold location and use it to update the KB. It is wrong. Instead we should use agent location to update KB to let KB learn that current agent location is not gold location by **assume_gold(no, AL)**, and then the correct written confirmation can now be provided. (ex."KB learn [1,1] - there's no gold here!"). This update also appears in our "wumpus_updated.pl" code submitted.
 
